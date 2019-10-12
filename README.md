@@ -66,7 +66,7 @@ id__8e2aHqp1u4Nm1kAtF8BRuKNeSuWzGEGG91~ILh1v~uCqd90epINJ e08aa99601744c15-0548dc
 id__89Vx3P4cQfEGG~uRLa_Bru6Srq_RErQMbXfzRpKQ-Yt~_ora.SnB 9de00f110cc8f9e9-a7e773b8afe469d1-b4699ff39dacaf2f-93e2cd8b72f3a73e
 ```
 
-## Notes
+## Notes 
 
 Ships with a frozen copy of nyzostring - python port - supporting only Public Identifiers nyzo Strings.  
 That will be converted later on to use a pypi module.
