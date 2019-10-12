@@ -17,7 +17,15 @@ from nyzostrings.nyzostringencoder import NyzoStringEncoder
 ALPHABET = "0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ-.~_"
 
 
-__version__ = "0.1"
+__version__ = "0.2"
+
+
+def split_by_len(item, maxlen):
+    return (item[ind:ind+maxlen] for ind in range(0, len(item), maxlen))
+
+
+def bytes_as_string_with_dashes(hexa: str) -> str:
+    return '-'.join(split_by_len(hexa, 16))
 
 
 def find_it(string: str, ctx):
@@ -30,7 +38,7 @@ def find_it(string: str, ctx):
         if not ctx.obj['case']:
             address = address.lower()
         if string in address:
-            print(address, pk)
+            print(address, bytes_as_string_with_dashes(pk))
             found += 1
             if found > ctx.obj['max']:
                 return
