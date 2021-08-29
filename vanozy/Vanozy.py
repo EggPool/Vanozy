@@ -7,17 +7,19 @@ EggdraSyl - Oct. 2019.
 
 import click
 import sys
+import ed25519
 # from os import urandom
 from secrets import token_hex
 from multiprocessing import Process
 from nyzostrings.nyzostringpublicidentifier import NyzoStringPublicIdentifier
+from nyzostrings.nyzostringprivateseed import NyzoStringPrivateSeed
 from nyzostrings.nyzostringencoder import NyzoStringEncoder
 
 
 ALPHABET = "0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ-.~_"
 
 
-__version__ = "0.2"
+__version__ = "0.3"
 
 
 def split_by_len(item, maxlen):
@@ -33,12 +35,17 @@ def find_it(string: str, ctx):
     while True:
         # pk = urandom(32).hex()
         pk = token_hex(32)  # +50% time, but supposed to be cryptographically secure
-        nyzo_string = NyzoStringPublicIdentifier.from_hex(pk)
-        address = NyzoStringEncoder.encode(nyzo_string)
+        pk_nyzo_string = NyzoStringPrivateSeed.from_hex(pk)
+        keydata = bytes.fromhex(pk)
+        signing_key = ed25519.SigningKey(keydata)
+        verifying_key = signing_key.get_verifying_key()
+        vkey_hex = verifying_key.to_ascii(encoding="hex")
+        public_nyzo_string = NyzoStringPublicIdentifier.from_hex(vkey_hex.decode())
+        address = NyzoStringEncoder.encode(public_nyzo_string)
         if not ctx.obj['case']:
             address = address.lower()
         if string in address:
-            print(address, bytes_as_string_with_dashes(pk))
+            print(NyzoStringEncoder.encode(public_nyzo_string), NyzoStringEncoder.encode(pk_nyzo_string))
             found += 1
             if found > ctx.obj['max']:
                 return

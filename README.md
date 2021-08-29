@@ -17,7 +17,7 @@ Nyzo strings are the future proof way to encode these objects, and we can expect
 ## Requirements
 
 - python 3.6+
-- click module, `pip3 install click` or use `pip3 install -r requirements.txt`
+- click module, nyzostrings, ed25519 `pip3 install -r requirements.txt`
 
 
 ## How to use
@@ -54,8 +54,8 @@ nyzo_id_string private_seed_as_hex_with_dashes
 Example output (do **not** use these addresses ever irl, since their seeds are now public)
 
 Command was `python3 Vanozy.py -p 1 -m 5 -c find EGG`  
-That is One process, stop after 5 matches, case sensitive, look for 'EGG'
-
+That is One process, stop after 5 matches, case sensitive, look for 'EGG'  
+(Example from outdated version)
 ```
 Looking for 'EGG' Case sensitive with 1 processes
 id__88RPxdoK9Koq-kBtRnDTCmMpEGG1H-71Y15jmDKwA2nVPtInY5Ud 8cf180d5ed26d5d9-f1491ccd69b5955b-d89e9a41abc1c1e8-1153566b5f8c25b7
@@ -68,8 +68,8 @@ id__89Vx3P4cQfEGG~uRLa_Bru6Srq_RErQMbXfzRpKQ-Yt~_ora.SnB 9de00f110cc8f9e9-a7e773
 
 ## Notes 
 
-Ships with a frozen copy of nyzostring - python port - supporting only Public Identifiers nyzo Strings.  
-That will be converted later on to use a pypi module.
+~~Ships with a frozen copy of nyzostring - python port - supporting only Public Identifiers nyzo Strings.~~    
+Converted for use of pypi module.
 
 ## Tip Jar
 
@@ -79,6 +79,7 @@ Show your appreciation, send a few coffees or pizzas to the dev:
 
 ## Changelog
 
+- 0.3: bugfix and modern `key_` output
 - 0.2: format improvement, doc
 - 0.1: First test
 
